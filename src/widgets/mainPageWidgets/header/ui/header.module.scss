@@ -1,0 +1,73 @@
+@import "@app/styles/mixins";
+
+.navigation {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.logo {
+  cursor: pointer;
+  height: 80px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.list {
+  display: none;
+
+  ul {
+    display: flex;
+    gap: 20px;
+
+    li {
+      cursor: pointer;
+    }
+  }
+}
+
+.faq {
+  display: none;
+}
+
+.burger {
+
+  svg {
+    font-size: 34px;
+    cursor: pointer;
+    color: var(--color-red);
+  }
+}
+
+@include desktop {
+  .logo {
+    width: 100px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .list {
+    display: block;
+
+    ul li {
+      cursor: not-allowed;
+    }
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .faq {
+    display: block;
+  }
+}
