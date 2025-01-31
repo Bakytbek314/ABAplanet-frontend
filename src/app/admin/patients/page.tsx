@@ -5,7 +5,7 @@ import AddPatient from "@widgets/adminPageWidgets/addPatient/ui/addPatient";
 
 const PatientsPage = () => {
     return (
-        <div className={"container"}>
+        <div className={"wrapper"}>
             <AddPatient/>
             <Divider className={"mt-5 mb-5"}/>
             <PatientsList/>

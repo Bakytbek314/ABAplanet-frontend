@@ -9,7 +9,7 @@ import {InputText} from "primereact/inputtext";
 import {FloatLabel} from "primereact/floatlabel";
 
 
-const AddPatient = () => {
+const AddSpecialist = () => {
 
     const stepperRef = useRef(null);
     const [value, setValue] = useState<string>('');
@@ -21,7 +21,7 @@ const AddPatient = () => {
                     (
                         <span className="flex align-items-center gap-2 p-2 w-full">
                             <i className="pi pi-user-plus ml-3 mr-2" style={{fontSize: "2rem"}}></i>
-                            <span className="font-bold white-space-nowrap"><TextType variant={"h3"}>Добавить пациента</TextType></span>
+                            <span className="font-bold white-space-nowrap"><TextType variant={"h3"}>Добавить специалиста</TextType></span>
                         </span>
                     ) as React.ReactNode
                 }
@@ -69,4 +69,4 @@ const AddPatient = () => {
     );
 };
 
-export default AddPatient;
+export default AddSpecialist;

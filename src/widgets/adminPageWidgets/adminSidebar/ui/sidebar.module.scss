@@ -1,30 +1,21 @@
 .sidebar {
   width: 250px;
-  height: 100vh;
-  background-color: #333;
-  color: white;
+  height: 100dvh;
+  background-color: var(--cyan-100);
+  color: #000;
   position: fixed;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 
   ul {
     list-style: none;
-    padding: 0;
+    padding: 10px 0 10px  10px;
     margin: 0;
-
-    li {
-      margin-bottom: 1rem;
-
-      a {
-        color: white;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+    border-radius: 30px;
+    overflow: hidden;
   }
+}
+
+.active {
+  background: #fff;
+  color: black;
+  border-radius: 30px 0 0 30px;
 }

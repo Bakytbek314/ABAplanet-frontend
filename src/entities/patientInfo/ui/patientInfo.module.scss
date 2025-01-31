@@ -1,0 +1,19 @@
+.patient_info {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.info {
+  width: 100%;
+  border: 1px solid var(--color-grey-dark);
+  display: flex;
+
+  div {
+    padding: 6px;
+  }
+
+  .info_title {
+    width: 20%;
+    border-right: 1px solid var(--color-grey-dark);
+  }
+}

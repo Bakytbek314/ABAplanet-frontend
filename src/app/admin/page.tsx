@@ -1,9 +1,8 @@
-
 const Admin = () => {
     return (
-        <div>
+        <main className="wrapper">
             <h1>Admin</h1>
-        </div>
+        </main>
     );
 };
 

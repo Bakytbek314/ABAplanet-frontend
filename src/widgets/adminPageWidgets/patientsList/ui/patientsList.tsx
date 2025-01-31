@@ -1,8 +1,11 @@
+import * as React from "react";
+import PatientChart from "@entities/patientChart/ui/patientChart";
+import PatientInfo from "@entities/patientInfo/ui/patientInfo";
+import TextType from "@text/*";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
-import TextType from "@text/*";
 
 
 const PatientsList = () => {
@@ -20,23 +23,18 @@ const PatientsList = () => {
                 }
             >
                 <div className="p-4">
-                    <TabView>
+                    <TabView className={"mb-4"}>
                         <TabPanel header="О ребёнке" leftIcon="pi pi-user mr-2" className={"mr-4"}>
-                            <TextType variant={"bigP"}>Дата рождения:</TextType>
-                            <TextType variant={"bigP"}>Родитель:</TextType>
-                            <TextType variant={"bigP"}>Телефон:</TextType>
-                            <TextType variant={"bigP"}>Дата регистрации:</TextType>
+                            <PatientInfo/>
+                        </TabPanel>
+                        <TabPanel header="Расписание" leftIcon="pi pi-calendar mr-2" className={"mr-4"}>
+                            <PatientInfo/>
                         </TabPanel>
                         <TabPanel header="График" leftIcon="pi pi-chart-bar mr-2" className={"mr-4"}>
-                            <p className="pt-4">
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-                                enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
-                                ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
-                            </p>
+                            <PatientChart/>
                         </TabPanel>
                         <TabPanel header="Финансы" leftIcon="pi pi-dollar mr-2">
-                            <p className="pt-4">
+                            <p>
                                 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti
                                 quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
                                 culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
