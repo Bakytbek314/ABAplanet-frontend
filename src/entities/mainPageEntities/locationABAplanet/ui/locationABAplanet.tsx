@@ -9,7 +9,7 @@ const LocationABAplanet = () => {
         let map;
         map = DG.map("ourContacts-container", {
             center: [40.509942, 72.811327],
-            zoom: 16,
+            zoom: 23,
         })
 
         DG.marker([40.510023, 72.811259]).addTo(map)

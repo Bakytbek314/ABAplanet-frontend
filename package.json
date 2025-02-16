@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "2gis-maps": "^3.7.5",
     "chart.js": "^4.4.7",
     "classnames": "^2.5.1",
     "framer-motion": "^12.0.1",
@@ -19,7 +20,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
-    "swiper": "^11.2.1"
+    "swiper": "^11.2.1",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",

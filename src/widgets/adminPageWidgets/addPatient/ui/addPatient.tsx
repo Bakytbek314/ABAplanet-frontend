@@ -1,72 +1,86 @@
 "use client";
-import React, {useRef, useState} from "react";
-import { Stepper } from 'primereact/stepper';
-import { StepperPanel } from 'primereact/stepperpanel';
-import { Button } from 'primereact/button';
-import { Accordion, AccordionTab } from 'primereact/accordion';
+import React, { useRef, useState } from "react";
+import { Accordion, AccordionTab } from "primereact/accordion";
+import { InputText } from "primereact/inputtext";
+import { addPatientForm } from "@/shared/constants/addPatientForm";
+import { AddPatientFormData } from "@/shared/types/fetchData.types";
+import { addPatient } from "../api/addPatient";
 import TextType from "@text/*";
-import {InputText} from "primereact/inputtext";
-import {FloatLabel} from "primereact/floatlabel";
-
+import Button from "@/shared/ui/button/button";
+import styles from "./addPatient.module.scss";
 
 const AddPatient = () => {
 
-    const stepperRef = useRef(null);
-    const [value, setValue] = useState<string>('');
+  const [formData, setFormData] = useState<AddPatientFormData>({
+    firstName: "",
+    lastName: "",
+    parentFirstName: "",
+    parentLastName: "",
+    login: "",
+    password: "",
+    phoneNumber: "",
+  });
 
-    return (
-        <Accordion activeIndex={null} expandIcon collapseIcon>
-            <AccordionTab
-                header={
-                    (
-                        <span className="flex align-items-center gap-2 p-2 w-full">
-                            <i className="pi pi-user-plus ml-3 mr-2" style={{fontSize: "2rem"}}></i>
-                            <span className="font-bold white-space-nowrap"><TextType variant={"h3"}>Добавить пациента</TextType></span>
-                        </span>
-                    ) as React.ReactNode
-                }
-            >
-                <div className={"p-4"}>
-                    <Stepper ref={stepperRef} style={{ flexBasis: '50rem' }}>
-                        <StepperPanel header="Header I">
-                            <div className="flex flex-column h-12rem">
-                                <div className="border-3  surface-border border-round p-4">
-                                    <div className="card flex justify-content-center">
-                                        <FloatLabel>
-                                            <InputText id="username" value={value}
-                                                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}/>
-                                            <label htmlFor="username">Username</label>
-                                        </FloatLabel>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex pt-4 justify-content-end">
-                                <Button label="Next" icon="pi pi-arrow-right" iconPos="right"
-                                        onClick={() => stepperRef.current.nextCallback()}/>
-                            </div>
-                        </StepperPanel>
-                        <StepperPanel header="Header II">
-                            <div className="flex flex-column h-12rem">
-                                <div className="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content II</div>
-                            </div>
-                            <div className="flex pt-4 justify-content-between">
-                                <Button label="Back" severity="secondary" icon="pi pi-arrow-left" onClick={() => stepperRef.current.prevCallback()} />
-                                <Button label="Next" icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} />
-                            </div>
-                        </StepperPanel>
-                        <StepperPanel header="Header III">
-                            <div className="flex flex-column h-12rem">
-                                <div className="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
-                            </div>
-                            <div className="flex pt-4 justify-content-start">
-                                <Button label="Back" severity="secondary" icon="pi pi-arrow-left" onClick={() => stepperRef.current.prevCallback()} />
-                            </div>
-                        </StepperPanel>
-                    </Stepper>
-                </div>
-            </AccordionTab>
-        </Accordion>
-    );
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await addPatient(formData);
+    setFormData({
+      firstName: "",
+      lastName: "",
+      parentFirstName: "",
+      parentLastName: "",
+      login: "",
+      password: "",
+      phoneNumber: "",
+    });
+  };
+
+  return (
+    <Accordion activeIndex={null} expandIcon collapseIcon>
+      <AccordionTab
+        header={
+          (
+            <span className="flex align-items-center gap-2 p-2 w-full">
+              <i
+                className="pi pi-user-plus ml-3 mr-2"
+                style={{ fontSize: "2rem" }}
+              ></i>
+              <span className="font-bold white-space-nowrap">
+                <TextType variant={"h3"}>Добавить пациента</TextType>
+              </span>
+            </span>
+          ) as React.ReactNode
+        }
+      >
+        <form className={styles.form} onSubmit={handleSubmit}>
+          {addPatientForm.map(({ name, icon, placeholder, type = "text" }) => (
+            <div className="p-inputgroup" key={name}>
+              <span className="p-inputgroup-addon">
+                <i className={icon}></i>
+              </span>
+              <InputText
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                onChange={handleChange}
+                value={formData[name]}
+                className="p-2"
+                required
+              />
+            </div>
+          ))}
+          <Button color={"green"} type="submit">
+            Добавить
+          </Button>
+        </form>
+      </AccordionTab>
+    </Accordion>
+  );
 };
 
 export default AddPatient;

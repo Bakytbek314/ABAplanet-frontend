@@ -8,4 +8,5 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     onClick?: () => void;
     align?: "left" | "center" | "right";
     children: ReactNode;
+    type?: "submit" | "reset";
 }

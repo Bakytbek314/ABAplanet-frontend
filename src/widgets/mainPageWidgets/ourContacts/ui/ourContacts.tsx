@@ -52,7 +52,7 @@ const OurContacts = () => {
                             </div>
                         </div>
                         <div className={styles.map}>
-                            {/*<LocationABAplanet/>*/}
+                            <LocationABAplanet/>
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import {ButtonProps} from "./button.props.ts";
+import {ButtonProps} from "./button.props";
 import TextType from "@text/"
 import styles from "./button.module.scss";
-const Button = ({size, color, align = "center", children, onClick, className}: ButtonProps ) => {
+const Button = ({size, color, align = "center", children, onClick, className, type}: ButtonProps ) => {
 
     const classNameGenerator = classNames(
         size && styles[size],
@@ -12,7 +12,7 @@ const Button = ({size, color, align = "center", children, onClick, className}: B
     )
 
     return (
-        <button className={classNameGenerator} onClick={onClick}>
+        <button className={classNameGenerator} onClick={onClick} type={type}>
             <TextType variant={"mediumP"} align={align}>
                 {children}
             </TextType>
