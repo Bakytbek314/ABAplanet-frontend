@@ -1,10 +1,10 @@
 "use client";
 import {useRef, useState} from "react";
 import {useBlockedScroll} from "@shared/lib/useBlockedScroll";
-import WorkerCard from "@entities/mainPageEntities/workerCard/ui/workerCard.tsx";
-import WorkerEducationModal from "@entities/mainPageEntities/workerCard/ui/workerEducationModal/workerEducationModal.tsx";
-import TextType from "@shared/ui/textType/textType.tsx";
-import {workerInfo} from "@shared/constants/workerInfo.ts";
+import WorkerCard from "@entities/mainPageEntities/workerCard/ui/workerCard";
+import WorkerEducationModal from "@entities/mainPageEntities/workerCard/ui/workerEducationModal/workerEducationModal";
+import TextType from "@shared/ui/textType/textType";
+import {workerInfo} from "@shared/constants/workerInfo";
 import styles from "./ourTeam.module.scss";
 
 const OurTeam = () => {

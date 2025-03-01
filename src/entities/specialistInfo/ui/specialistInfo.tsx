@@ -1,7 +1,9 @@
 import TextType from "@text/*";
 import styles from "./specialistInfo.module.scss";
+import { SpecialistInfoProps } from "./specialistInfo.props";
+import { useFormateDate } from "@/shared/lib/useFormateDate";
 
-const SpecialistInfo = (props) => {
+const SpecialistInfo = (props: SpecialistInfoProps) => {
 
     const {
         firstName,
@@ -51,7 +53,7 @@ const SpecialistInfo = (props) => {
                     <TextType variant={"bigP"}>Дата регистрации</TextType>
                 </div>
                 <div>
-                    <TextType variant={"bigP"}>{createdAt}</TextType>
+                    <TextType variant={"bigP"}>{useFormateDate(createdAt)}</TextType>
                 </div>
             </div>
         </div>

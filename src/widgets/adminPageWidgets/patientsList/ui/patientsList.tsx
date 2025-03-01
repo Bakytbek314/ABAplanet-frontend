@@ -1,21 +1,21 @@
 "use client";
-import * as React from "react";
-import PatientChart from "@entities/patientChart/ui/patientChart";
-import PatientInfo from "@entities/patientInfo/ui/patientInfo";
-import TextType from "@text/*";
+import React, { useEffect } from "react";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { TabView, TabPanel } from "primereact/tabview";
 import { Avatar } from "primereact/avatar";
+import { usePatientsStore } from "@/shared/store/usePatientsStore";
+import PatientChart from "@entities/patientChart/ui/patientChart";
+import PatientInfo from "@entities/patientInfo/ui/patientInfo";
 import PatientSchedule from "@/entities/patientSchedule/ui/patientSchedule";
-import { usePatientsStore } from "../../../../shared/store/usePatientsStore";
-import { useEffect } from "react";
+import TextType from "@text/*";
+import PatientFinance from "@/entities/patientFinance/ui/patientFinance";
 
 const PatientsList = () => {
     const { patients, fetchPatients } = usePatientsStore();
 
     useEffect(() => {
         fetchPatients();
-    }, [patients])
+    }, [patients]);
 
   return (
     <Accordion activeIndex={null}>
@@ -60,7 +60,7 @@ const PatientsList = () => {
                 leftIcon="pi pi-calendar mr-2"
                 className={"mr-4"}
               >
-                <PatientSchedule individualSession={elem.individualSession} groupSessions={elem.groupSessions}/>
+                <PatientSchedule individualSession={elem.individualSession} groupSessions={elem.groupSessions} patientId={elem.id}/>
               </TabPanel>
               <TabPanel
                 header="График"
@@ -70,7 +70,7 @@ const PatientsList = () => {
                 <PatientChart />
               </TabPanel>
               <TabPanel header="Финансы" leftIcon="pi pi-dollar mr-2">
-                $$$
+                <PatientFinance payments={elem.payments} debts={elem.debts} patientId={elem.id}/>
               </TabPanel>
             </TabView>
           </div>

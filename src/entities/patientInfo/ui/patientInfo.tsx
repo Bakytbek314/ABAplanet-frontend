@@ -1,7 +1,9 @@
+import { useFormateDate } from "@/shared/lib/useFormateDate";
 import styles from "./patientInfo.module.scss";
 import TextType from "@text/*";
+import { PatientInfoProps } from "./patientInfo.props";
 
-const PatientInfo = (props) => {
+const PatientInfo = (props: PatientInfoProps) => {
   const {
     firstName,
     lastName,
@@ -55,7 +57,7 @@ const PatientInfo = (props) => {
           <TextType variant={"bigP"}>Дата регистрации</TextType>
         </div>
         <div>
-          <TextType variant={"bigP"}>{createdAt}</TextType>
+          <TextType variant={"bigP"}>{useFormateDate(createdAt)}</TextType>
         </div>
       </div>
     </div>

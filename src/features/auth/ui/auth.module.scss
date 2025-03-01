@@ -1,0 +1,22 @@
+.main {
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("https://img.freepik.com/free-photo/beautiful-shot-fog-covering-pine-trees_181624-1848.jpg?semt=ais_hybrid");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.form {
+    width: 380px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--color-white);
+    border-radius: 10px;
+}

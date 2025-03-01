@@ -17,6 +17,7 @@ const SpecialistSchedule = (props: SpecialistScheduleProps) => {
         <Column field="day" header="День" className="py-2"></Column>
         <Column field="startTime" header="Начало"></Column>
         <Column field="endTime" header="Конец"></Column>
+        <Column field="patient.firstName" header="Пациент"></Column>
       </DataTable>
 
       <DataTable

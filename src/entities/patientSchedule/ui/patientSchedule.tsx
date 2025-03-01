@@ -1,14 +1,12 @@
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { PatientScheduleProps } from "./patientSchedule.props";
-import AddSchedule from "@/features/addSchedule/ui/addSchedule";
 
 const PatientSchedule = (props: PatientScheduleProps) => {
-  const { individualSession, groupSessions } = props;
+  const { individualSession, groupSessions, patientId } = props;
 
   return (
     <div>
-      {/* <AddSchedule/> */}
       <DataTable
         value={individualSession}
         stripedRows
@@ -19,6 +17,7 @@ const PatientSchedule = (props: PatientScheduleProps) => {
         <Column field="day" header="День" className="py-2"></Column>
         <Column field="startTime" header="Начало"></Column>
         <Column field="endTime" header="Конец"></Column>
+        <Column field="specialist.specialization" header="Специальность"></Column>
       </DataTable>
 
       <DataTable

@@ -11,6 +11,7 @@ const AdminSidebar = () => {
 
     const menuItems = [
         { label: "Dashboard", icon: "pi pi-home", href: "/admin" },
+        { label: "Расписания", icon: "pi pi-calendar", href: "/admin/schedule" },
         { label: "Пациенты", icon: "pi pi-users", href: "/admin/patients" },
         { label: "Специалисты", icon: "pi pi-users", href: "/admin/specialists" },
         { label: "Пособия", icon: "pi pi-clipboard", href: "/admin/manuals" },

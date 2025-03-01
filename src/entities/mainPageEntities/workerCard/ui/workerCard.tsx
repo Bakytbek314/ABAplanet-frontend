@@ -1,11 +1,11 @@
 "use client";
 import Image from 'next/image'
 import { useState} from "react";
-import classNames from "classnames";
-import {WorkerCardProps} from "./workerCard.props.ts";
-import TextType from "@shared/ui/textType/textType.tsx";
-import Button from "@shared/ui/button/button.tsx";
+import {WorkerCardProps} from "./workerCard.props";
+import TextType from "@shared/ui/textType/textType";
+import Button from "@shared/ui/button/button";
 import AltPhoto from "@shared/assets/images/circles.png";
+import classNames from "classnames";
 import styles from "./workerCard.module.scss";
 
 const WorkerCard = ( { name, photo, description, onModalOpen, education, id }: WorkerCardProps ) => {

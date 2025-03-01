@@ -7,7 +7,7 @@ const PatientsPage = () => {
     return (
         <div className={"wrapper"}>
             <AddPatient/>
-            <Divider className={"mt-5 mb-5"}/>
+            <Divider className={"my-5"}/>
             <PatientsList/>
         </div>
     );

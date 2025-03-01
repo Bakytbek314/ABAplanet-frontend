@@ -1,7 +1,9 @@
+import ManageMainPageContent from "@/widgets/adminPageWidgets/manageMainPageContent/ui/manageMainPageContent";
+
 const Admin = () => {
     return (
         <main className="wrapper">
-            <h1>Admin</h1>
+            <ManageMainPageContent/>
         </main>
     );
 };

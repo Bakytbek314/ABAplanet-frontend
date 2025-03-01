@@ -14,10 +14,6 @@ const Manuals = () => {
         { id: 4, name: 'Документ 4', format: 'TXT' },
     ];
 
-    const handleShowDocument = (rowData: any) => {
-        alert(`Показать документ: `);
-    };
-
     const renderHeader = () => {
         return (
             <div className="flex justify-content-between p-2">
@@ -41,7 +37,6 @@ const Manuals = () => {
             label="Показать"
             icon="pi pi-eye"
             className="p-button-text"
-            onClick={() => handleShowDocument(rowData)}
         />
     );
 

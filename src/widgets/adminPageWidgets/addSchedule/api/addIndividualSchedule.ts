@@ -1,6 +1,8 @@
 import { api } from "@/shared/lib/api";
 
-export const addSchedule = async (data) => {
+export const addIndividualSchedule = async (data: {}) => {
+    console.log("data>>>", data);
+    
     await api(`sessions/individual`, {
         method: "POST",
         body: JSON.stringify(data)

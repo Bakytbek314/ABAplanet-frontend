@@ -6,7 +6,7 @@ const SpecialistsPage = () => {
     return (
         <div className={"wrapper"}>
             <AddSpecialist/>
-            <Divider className={"mt-5 mb-5"}/>
+            <Divider className={"my-5"}/>
             <SpecialistsList/>
         </div>
     );
