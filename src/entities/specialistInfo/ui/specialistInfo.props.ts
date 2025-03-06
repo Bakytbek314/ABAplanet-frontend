@@ -3,6 +3,6 @@ export interface SpecialistInfoProps {
   lastName: string;
   login: string;
   telephoneNumber: string;
-  createdAt: string;
+  createdAt: Date;
   specialization: string;
 }

@@ -8,7 +8,7 @@ export const addSpecialistForm = [
     { name: "phoneNumber", placeholder: "Номер телефона", icon: "pi pi-phone" }
 ];
 
-export const specialization: Specialization[] = [
+export const specializations: Specialization[] = [
     { name: "ABA-специалист" },
     { name: "СИ-специалист" },
     { name: "Логопед" },

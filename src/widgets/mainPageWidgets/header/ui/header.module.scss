@@ -20,14 +20,20 @@
 }
 
 .list {
-  display: none;
-
   ul {
     display: flex;
     gap: 20px;
 
-    li {
+    li a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       cursor: pointer;
+      color: var(--color-blue);
+
+      i {
+        font-size: 24px;
+      }
     }
   }
 }
@@ -53,21 +59,5 @@
       width: 100%;
       height: 100%;
     }
-  }
-
-  .list {
-    display: block;
-
-    ul li {
-      cursor: not-allowed;
-    }
-  }
-
-  .burger {
-    display: none;
-  }
-
-  .faq {
-    display: block;
   }
 }

@@ -25,25 +25,25 @@ const PatientsList = () => {
             (
               <span className="flex align-items-center gap-2 p-2 w-full">
                 <Avatar
-                  image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png"
+                  image=""
                   shape="circle"
-                  size={"large"}
+                  size={"normal"}
                 />
                 <span className="font-bold white-space-nowrap">
-                  <TextType variant={"h3"}>{elem.firstName} {elem.lastName}</TextType>
+                  <TextType variant={"bigP"}>{elem.firstName} {elem.lastName}</TextType>
                 </span>
               </span>
             ) as React.ReactNode
           }
           key={i}
-          className="mb-3"
+          className="mb-2"
         >
           <div className="p-4">
-            <TabView className={"mb-4"}>
+            <TabView>
               <TabPanel
                 header="О ребёнке"
                 leftIcon="pi pi-user mr-2"
-                className={"mr-4"}
+                headerClassName="mr-4"
               >
                 <PatientInfo 
                   firstName={elem.firstName}
@@ -58,14 +58,14 @@ const PatientsList = () => {
               <TabPanel
                 header="Расписание"
                 leftIcon="pi pi-calendar mr-2"
-                className={"mr-4"}
+                headerClassName="mr-4"
               >
                 <PatientSchedule individualSession={elem.individualSession} groupSessions={elem.groupSessions} patientId={elem.id}/>
               </TabPanel>
               <TabPanel
                 header="График"
                 leftIcon="pi pi-chart-bar mr-2"
-                className={"mr-4"}
+                headerClassName={"mr-4"}
               >
                 <PatientChart />
               </TabPanel>

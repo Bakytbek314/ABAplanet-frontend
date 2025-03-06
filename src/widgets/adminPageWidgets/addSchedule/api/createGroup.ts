@@ -4,6 +4,9 @@ export const createGroup = async (data: {}) => {
     
     await api(`sessions/group`, {
         method: "POST",
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
     });
 }

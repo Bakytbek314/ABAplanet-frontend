@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { InputText } from "primereact/inputtext";
-import { addSpecialistForm, specialization } from "@/shared/constants/addSpecialistForm";
+import { addSpecialistForm, specializations } from "@/shared/constants/addSpecialistForm";
 import { addSpecialist } from "../api/addSpecialist";
 import { AddSpecialistFormData } from "@/shared/types/fetchData.types";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
@@ -97,7 +97,7 @@ const AddSpecialist = () => {
               checkmark={true}
               value={selectedSpecialization}
               onChange={(e) => {setSelectedSpecialization(e.value) ,handleSpecializationChange(e)}}
-              options={specialization}
+              options={specializations}
               optionLabel="name"
               placeholder="Выберите специальность"
               className="p-2 w-8"

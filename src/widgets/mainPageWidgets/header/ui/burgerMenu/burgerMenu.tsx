@@ -1,7 +1,7 @@
 import {useRef} from "react";
-import {useClickOutSide} from "../../../../shared/lib/useClickOutSide.ts";
+import {useClickOutSide} from "@/shared/lib/useClickOutSide";
 import { FcContacts, FcGallery, FcBusinesswoman } from "react-icons/fc";
-import {BurgerMenuProps} from "./burgerMenu.props.ts";
+import {BurgerMenuProps} from "./burgerMenu.props";
 import styles from "./burgerMenu.module.scss";
 
 const BurgerMenu = ({ onMenuClose }: BurgerMenuProps) => {

@@ -9,6 +9,7 @@ import { FileUpload } from "primereact/fileupload";
 import { InputTextarea } from "primereact/inputtextarea";
 import { editCard } from "../../api/editCard";
 import { api } from "@/shared/lib/api";
+import { deleteCard } from "../../api/deleteCard";
 
 const SpecialistCard = (props: SpecialistCardProps) => {
   const { id, photo, diplomaPhoto, description, specialistId } = props;
@@ -26,37 +27,36 @@ const SpecialistCard = (props: SpecialistCardProps) => {
     const formData = new FormData();
     formData.append("specialistId", String(specialistId));
     formData.append("description", editableDescription);
-  console.log("formData>>>", formData);
-  
+
     if (photoFile) {
       formData.append("photo", photoFile);
     }
-  
+
     if (diplomaFile) {
       formData.append("diplomaPhoto", diplomaFile);
     }
-  
+
     try {
       const response = await fetch("http://localhost:5000/specialist-card", {
         method: "POST",
         body: formData,
       });
-  
+
       if (!response.ok) {
         throw new Error("Не удалось сохранить изменения");
       }
-  
+
       const result = await response.json();
-  
+
       if (result.photo) setCurrentPhoto(result.photo);
       if (result.diplomaPhoto) setCurrentDiplomaPhoto(result.diplomaPhoto);
-  
+
       toast.current?.show({
         severity: "success",
         summary: "Сохранено",
         detail: "Описание и фото обновлены",
       });
-  
+
       setIsChange(false);
     } catch (error) {
       console.error(error);
@@ -67,7 +67,6 @@ const SpecialistCard = (props: SpecialistCardProps) => {
       });
     }
   };
-  
 
   const header = (
     <div>
@@ -117,27 +116,42 @@ const SpecialistCard = (props: SpecialistCardProps) => {
     <>
       {!isChange ? (
         <Button
+          className="p-1"
           label="Изменить"
           severity="secondary"
           icon="pi pi-pen"
           onClick={() => setIsChange(true)}
         />
       ) : (
-        <>
-          <Button label="Сохранить" icon="pi pi-check" onClick={saveChanges} />
+        <div className="flex gap-2">
           <Button
+            className="p-1"
+            label="Сохранить"
+            icon="pi pi-check"
+            onClick={saveChanges}
+          />
+          <Button
+            className="p-1"
             label="Отмена"
             severity="secondary"
             icon="pi pi-times"
             onClick={() => {
               setIsChange(false);
-              setEditableDescription(description); // Возвращаем старое описание при отмене
+              setEditableDescription(description);
             }}
           />
-        </>
+          <Button
+            className="p-1"
+            label="Удалить"
+            severity="danger"
+            icon="pi pi-trash"
+            onClick={() => deleteCard(id)}
+          />
+        </div>
       )}
     </>
   );
+  { !id && setIsChange(true)}
 
   return (
     <div className="card flex">
