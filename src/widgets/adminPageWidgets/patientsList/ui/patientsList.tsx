@@ -7,7 +7,7 @@ import { usePatientsStore } from "@/shared/store/usePatientsStore";
 import PatientChart from "@entities/patientChart/ui/patientChart";
 import PatientInfo from "@entities/patientInfo/ui/patientInfo";
 import PatientSchedule from "@/entities/patientSchedule/ui/patientSchedule";
-import TextType from "@text/*";
+import TextType from "@shared/ui/textType/textType";
 import PatientFinance from "@/entities/patientFinance/ui/patientFinance";
 
 const PatientsList = () => {

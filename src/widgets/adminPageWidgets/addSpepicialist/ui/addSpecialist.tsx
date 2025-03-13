@@ -10,7 +10,7 @@ import {
   InputNumber,
   InputNumberValueChangeEvent,
 } from "primereact/inputnumber";
-import TextType from "@text/*";
+import TextType from "@shared/ui/textType/textType";
 import Button from "@/shared/ui/button/button";
 import styles from "./addSpecialist.module.scss";
 

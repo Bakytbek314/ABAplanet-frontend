@@ -7,8 +7,6 @@ import { useRef, useState } from "react";
 import { Toast } from "primereact/toast";
 import { FileUpload } from "primereact/fileupload";
 import { InputTextarea } from "primereact/inputtextarea";
-import { editCard } from "../../api/editCard";
-import { api } from "@/shared/lib/api";
 import { deleteCard } from "../../api/deleteCard";
 
 const SpecialistCard = (props: SpecialistCardProps) => {

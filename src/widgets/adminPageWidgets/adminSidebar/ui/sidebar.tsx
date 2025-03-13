@@ -1,10 +1,10 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
-import TextType from "@text/*";
 import { Ripple } from "primereact/ripple";
-import styles from "./sidebar.module.scss";
 import { destroyCookie } from "nookies";
+import Link from "next/link";
+import TextType from "@shared/ui/textType/textType";
+import styles from "./sidebar.module.scss";
 
 const AdminSidebar = () => {
   const pathName = usePathname();

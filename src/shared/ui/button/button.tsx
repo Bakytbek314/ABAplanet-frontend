@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import {ButtonProps} from "./button.props";
-import TextType from "@text/"
 import styles from "./button.module.scss";
+import TextType from "../textType/textType";
 const Button = ({size, color, align = "center", children, onClick, className, type}: ButtonProps ) => {
 
     const classNameGenerator = classNames(

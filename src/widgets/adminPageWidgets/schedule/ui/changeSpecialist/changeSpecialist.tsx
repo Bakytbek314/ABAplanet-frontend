@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSpecialistsStore } from "@/shared/store/useSpecialistsStore";
-import Button from "@/shared/ui/button/button";
 import { useSpecialistScdulesStore } from "../../store/useSpecialistScdulesStore";
+import Button from "@/shared/ui/button/button";
 
 const ChangeSpecialist = () => {
   const { specialists, fetchSpecialists } = useSpecialistsStore();

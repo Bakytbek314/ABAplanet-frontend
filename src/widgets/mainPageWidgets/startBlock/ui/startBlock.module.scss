@@ -1,4 +1,4 @@
-@import "@app/styles/mixins.scss";
+@use "@app/styles/mixins.scss" as *;
 
 .start_block_section {
   padding: 40px 0;

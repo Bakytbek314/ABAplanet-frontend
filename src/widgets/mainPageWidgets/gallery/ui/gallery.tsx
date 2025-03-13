@@ -2,9 +2,9 @@
 import Image from 'next/image'
 import {SwiperSlide} from "swiper/react";
 import SwiperContainer from "@features/swiperContainer/ui/swiperContainer";
-import TextType from "@text/";
+import TextType from "@shared/ui/textType/textType";
 import styles from "./gallery.module.scss";
-import {interiorPhotos} from "@shared/constants/interiorPhotos.ts";
+import {interiorPhotos} from "@shared/constants/interiorPhotos";
 const Gallery = () => {
     return (
         <section className={styles.gallery_section}>

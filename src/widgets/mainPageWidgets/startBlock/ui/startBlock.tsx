@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import TextType from "@text/";
-import Button from "@button/";
+import TextType from "@shared/ui/textType/textType";
+import Button from "@shared/ui/button/button";
 import styles from "./startBlock.module.scss";
 
 import Photo from "@shared/assets/images/startBlockPhoto.png";

@@ -5,7 +5,7 @@ import { InputText } from "primereact/inputtext";
 import { addPatientForm } from "@/shared/constants/addPatientForm";
 import { AddPatientFormData } from "@/shared/types/fetchData.types";
 import { addPatient } from "../api/addPatient";
-import TextType from "@text/*";
+import TextType from "@shared/ui/textType/textType";
 import Button from "@/shared/ui/button/button";
 import styles from "./addPatient.module.scss";
 

@@ -4,7 +4,7 @@ import { Accordion, AccordionTab } from "primereact/accordion";
 import { TabPanel, TabView } from "primereact/tabview";
 import { Avatar } from "primereact/avatar";
 import SpecialistInfo from "@entities/specialistInfo/ui/specialistInfo";
-import TextType from "@text/*";
+import TextType from "@shared/ui/textType/textType";
 import SpecialistSchedule from "@/entities/specialistSchedule/ui/specialistSchedule";
 import { useSpecialistsStore } from "@/shared/store/useSpecialistsStore";
 

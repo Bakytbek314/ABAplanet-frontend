@@ -1,9 +1,8 @@
-@import "./mixins.scss";
+@use "./mixins.scss" as *;
 
 .container {
   width: 350px;
   margin: 0 auto;
-  //border: 0.1px solid red;
 
   @include tablet {
     width: 720px;

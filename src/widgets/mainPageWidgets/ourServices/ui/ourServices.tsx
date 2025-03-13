@@ -1,8 +1,8 @@
 "use client";
 import {useState} from "react";
 import {motion} from "framer-motion";
-import TextType from "@text/";
-import Button from "@button/";
+import TextType from "@shared/ui/textType/textType";
+import Button from "@shared/ui/button/button";
 import {servicesInfo} from "@shared/constants/servicesInfo";
 import { IoChevronDownSharp } from "react-icons/io5";
 import styles from "./ourServices.module.scss";
@@ -36,7 +36,7 @@ const OurServices = () => {
                                     size={"full"}
                                     color={"grey"}
                                     onClick={() => onServicesOpen(service.id)}
-                                    className={openedServiceIndex === service.id && styles.active_btn}
+                                    className={openedServiceIndex === service.id ? styles.active_btn : ""}
                                     align={"left"}
                                 >
                                     {service.service}

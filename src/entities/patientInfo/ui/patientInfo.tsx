@@ -1,6 +1,6 @@
 import { useFormateDate } from "@/shared/lib/useFormateDate";
 import styles from "./patientInfo.module.scss";
-import TextType from "@text/*";
+import TextType from "@shared/ui/textType/textType";
 import { PatientInfoProps } from "./patientInfo.props";
 import { Button } from "primereact/button";
 import { useState } from "react";
