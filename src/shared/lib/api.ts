@@ -1,4 +1,5 @@
 import { parseCookies } from "nookies";
+import { baseUrl } from "../constants/baseUrl";
 
 type FetchOptions = RequestInit & {
   params?: Record<string, string | number>;
@@ -11,7 +12,7 @@ export const api = async <T>(
 ): Promise<T> => {
   const { params, headers, ...restOptions } = options;
 
-  const url = new URL(`http://localhost:5000/${enpoint}`);
+  const url = new URL(`${baseUrl}${enpoint}`);
 
   const cookies = parseCookies();
   const token = cookies.token;

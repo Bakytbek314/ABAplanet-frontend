@@ -13,13 +13,14 @@ import { deleteCard } from "../../api/deleteCard";
 
 const SpecialistCard = (props: SpecialistCardProps) => {
   const { id, photo, diplomaPhoto, description, specialistId } = props;
+
+  const toast = useRef<Toast>(null);
   const [isChange, setIsChange] = useState<boolean>(false);
   const [editableDescription, setEditableDescription] =
     useState<string>(description);
   const [currentPhoto, setCurrentPhoto] = useState<string>(photo);
   const [currentDiplomaPhoto, setCurrentDiplomaPhoto] =
     useState<string>(diplomaPhoto);
-  const toast = useRef<Toast>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [diplomaFile, setDiplomaFile] = useState<File | null>(null);
 

@@ -3,7 +3,8 @@ import ManageMainPageContent from "@/widgets/adminPageWidgets/manageMainPageCont
 const Admin = () => {
     return (
         <main className="wrapper">
-            <ManageMainPageContent/>
+            {/* <ManageMainPageContent/> */}
+            <h1>Главная</h1>
         </main>
     );
 };
