@@ -1,12 +1,12 @@
 "use client";
+import Image from "next/image";
+import { useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import Image from "next/image";
-import { SpecialistCardProps } from "./specialistCard.props";
-import { useRef, useState } from "react";
+import { InputTextarea } from "primereact/inputtextarea";
 import { Toast } from "primereact/toast";
 import { FileUpload } from "primereact/fileupload";
-import { InputTextarea } from "primereact/inputtextarea";
+import { SpecialistCardProps } from "./specialistCard.props";
 import { deleteCard } from "../../api/deleteCard";
 
 const SpecialistCard = (props: SpecialistCardProps) => {

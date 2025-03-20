@@ -3,6 +3,6 @@ export interface WorkerCardProps {
     name: string;
     photo: string;
     description: string;
-    education: HTMLImageElement;
-    onModalOpen: (id: {}) => void;
+    education: string;
+    onModalOpen: (id: string) => void;
 }

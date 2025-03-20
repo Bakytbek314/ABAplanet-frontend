@@ -4,8 +4,15 @@ import {SwiperSlide} from "swiper/react";
 import SwiperContainer from "@features/swiperContainer/ui/swiperContainer";
 import TextType from "@shared/ui/textType/textType";
 import styles from "./gallery.module.scss";
-import {interiorPhotos} from "@shared/constants/interiorPhotos";
+import { useGalleryStore } from '@/widgets/adminPageWidgets/manageMainPageContent/store/useGalleryStore';
+import { baseUrl } from '@/shared/constants/baseUrl';
+import { useEffect } from 'react';
 const Gallery = () => {
+    const { photos, fetchPhotos} = useGalleryStore();
+
+    useEffect(() => {
+        fetchPhotos();
+    }, [])
     return (
         <section className={styles.gallery_section}>
             <div className="container">
@@ -15,10 +22,10 @@ const Gallery = () => {
                     </TextType>
                 </div>
                 <SwiperContainer>
-                    {interiorPhotos.map((photo: string, index: number) => (
+                    {photos.map((elem, index) => (
                         <SwiperSlide key={index}>
                             <div className={styles.slider}>
-                                <Image src={photo} alt="room"/>
+                                <Image src={`${baseUrl}${elem.photo}`} alt="room" width={1000} height={1000}/>
                             </div>
                         </SwiperSlide>
                     ))}

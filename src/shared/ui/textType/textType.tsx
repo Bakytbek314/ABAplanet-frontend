@@ -1,4 +1,4 @@
-import {TextTypeProps} from "./textType.props.ts";
+import {TextTypeProps} from "./textType.props";
 import classNames from "classnames";
 import styles from "./textType.module.scss";
 

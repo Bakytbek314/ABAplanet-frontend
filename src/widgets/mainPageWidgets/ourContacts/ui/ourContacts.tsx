@@ -1,6 +1,6 @@
+import {FaInstagram, FaWhatsapp, FaPhoneAlt, FaMapMarkerAlt} from "react-icons/fa";
 import LocationABAplanet from "@entities/mainPageEntities/locationABAplanet/ui/locationABAplanet";
 import TextType from "@shared/ui/textType/textType";
-import {FaInstagram, FaWhatsapp, FaPhoneAlt, FaMapMarkerAlt} from "react-icons/fa";
 import styles from "./ourContacts.module.scss";
 
 const OurContacts = () => {

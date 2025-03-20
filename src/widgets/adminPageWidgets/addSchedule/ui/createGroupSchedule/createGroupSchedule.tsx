@@ -13,7 +13,7 @@ const CreateGroupSchedule = () => {
     const { specialists, fetchSpecialists } = useSpecialistsStore();
     
   const [createGroupFormData, setCreateGroupFormData] = useState({
-    streamNumber: 0 || null,
+    streamNumber: 0,
     firstStageStartTime: "",
     firstStageEndTime: "",
     secondStageStartTime: "",
@@ -35,7 +35,7 @@ const CreateGroupSchedule = () => {
   >(null);
 
   const handleGroupStream = (e: InputNumberValueChangeEvent) => {
-    setCreateGroupFormData({ ...createGroupFormData, streamNumber: e.value });
+    setCreateGroupFormData({ ...createGroupFormData, streamNumber: e.value ?? 0 });
   };
   const handleFirstStageStartTime = (e: DropdownChangeEvent) => {
     const { time } = e.value;

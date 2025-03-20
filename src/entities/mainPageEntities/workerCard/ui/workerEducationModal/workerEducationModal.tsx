@@ -1,15 +1,15 @@
 "use client"
 import Image from 'next/image'
 import {useRef} from "react";
-import {useClickOutSide} from "@shared/lib/useClickOutSide.ts";
-import {WorkerEducationModalProps} from "./workerEducationModal.props.ts"
+import {useClickOutSide} from "@shared/lib/useClickOutSide";
+import {WorkerEducationModalProps} from "./workerEducationModal.props"
 import {IoIosCloseCircleOutline} from "react-icons/io";
 import AltPhoto from "@shared/assets/images/diploma.webp";
 import styles from "./workerEdicationModal.module.scss";
 
 const WorkerEducationModal = ({workerEducationLicense, onModalClose}: WorkerEducationModalProps) => {
 
-    const modalRef = useRef(null);
+    const modalRef = useRef<HTMLDivElement | null>(null);
     useClickOutSide(modalRef, () => onModalClose());
 
     return (

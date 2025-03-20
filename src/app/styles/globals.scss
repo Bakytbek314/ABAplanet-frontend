@@ -2,5 +2,5 @@
 @use "colors" as *;
 @use "mixins" as *;
 @use "nullStyles" as *;
-@use "primeflex/primeflex.css";
-@use "primeicons/primeicons.css";
+@use "primeflex/primeflex.scss";
+@import "primeicons/primeicons.css";

@@ -2,7 +2,10 @@
 import React, { useRef, useState } from "react";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { InputText } from "primereact/inputtext";
-import { addSpecialistForm, specializations } from "@/shared/constants/addSpecialistForm";
+import {
+  addSpecialistForm,
+  specializations,
+} from "@/shared/constants/addSpecialistForm";
 import { addSpecialist } from "../api/addSpecialist";
 import { AddSpecialistFormData } from "@/shared/types/fetchData.types";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
@@ -15,8 +18,9 @@ import Button from "@/shared/ui/button/button";
 import styles from "./addSpecialist.module.scss";
 
 const AddSpecialist = () => {
-
-  const [selectedSpecialization, setSelectedSpecialization] = useState<string | null>(null);
+  const [selectedSpecialization, setSelectedSpecialization] = useState<
+    string | null
+  >(null);
 
   const [formData, setFormData] = useState<AddSpecialistFormData>({
     firstName: "",
@@ -30,17 +34,23 @@ const AddSpecialist = () => {
 
   const handleInputsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(
+      (prev) =>
+        ({
+          ...prev,
+          [name]: value,
+        } as AddSpecialistFormData)
+    );
   };
 
   const handleSpecializationChange = (e: DropdownChangeEvent) => {
     const { name } = e.value;
-    setFormData({ ...formData, specialization: name })
-  }
+    setFormData({ ...formData, specialization: name });
+  };
 
   const handleSalaryPercentChange = (e: InputNumberValueChangeEvent) => {
-    setFormData({ ...formData, salaryPercent: e.value ?? 50 })
-  }
+    setFormData({ ...formData, salaryPercent: e.value ?? 50 });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -82,10 +92,11 @@ const AddSpecialist = () => {
                 </span>
                 <InputText
                   placeholder={placeholder}
-                  name={name}
+                  name={name as keyof AddSpecialistFormData}
                   type={type}
                   onChange={handleInputsChange}
-                  value={formData[name]}
+                  value={String(formData[name as keyof AddSpecialistFormData] ?? "")
+                  }
                   className="p-2"
                   required
                 />
@@ -96,7 +107,10 @@ const AddSpecialist = () => {
             <Dropdown
               checkmark={true}
               value={selectedSpecialization}
-              onChange={(e) => {setSelectedSpecialization(e.value) ,handleSpecializationChange(e)}}
+              onChange={(e) => {
+                setSelectedSpecialization(e.value),
+                  handleSpecializationChange(e);
+              }}
               options={specializations}
               optionLabel="name"
               placeholder="Выберите специальность"

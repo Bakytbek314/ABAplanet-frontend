@@ -70,7 +70,7 @@ const AddFinance = ({ patientId }: AddFinanceProps) => {
                 onValueChange={(e: InputNumberValueChangeEvent) =>
                   setFinanceFormData({
                     ...financeFormData,
-                    amount: e.value,
+                    amount: e.value ?? 0,
                   })
                 }
               />

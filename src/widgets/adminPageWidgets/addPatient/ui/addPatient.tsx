@@ -68,7 +68,7 @@ const AddPatient = () => {
                 name={name}
                 placeholder={placeholder}
                 onChange={handleChange}
-                value={formData[name]}
+                value={formData[name as keyof AddPatientFormData]}
                 className="p-2"
                 required
               />

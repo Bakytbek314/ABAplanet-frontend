@@ -20,7 +20,7 @@ const WorkerCard = ( { name, photo, description, onModalOpen, education, id }: W
         <div className={classNames(styles.worker_card, expandedCard !== id && styles.expanded_card)}>
             <div className={styles.worker_photo}>
                 <Image
-                     src={photo ? photo : AltPhoto as string}
+                     src={photo ? photo : AltPhoto as unknown as string}
                      alt="photo"
                 />
             </div>

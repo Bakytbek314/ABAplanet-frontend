@@ -12,7 +12,7 @@ import {
 import { deleteIndividualSession } from "../api/deleteIndividualSession";
 
 const Schedule = () => {
-  const { specialistId, individual, group, mainGroup } =
+  const { individual, group, mainGroup } =
     useSpecialistScdulesStore();
 
   const getSession = (day: string, time: string) => {
@@ -73,16 +73,20 @@ const Schedule = () => {
     }
   };
 
-  const confirm = (e: React.MouseEvent<HTMLTableCellElement>, sessionId: number, firstName: string) => {
+  const confirm = (
+    e: React.MouseEvent<HTMLTableCellElement>,
+    sessionId: number,
+    firstName: string
+  ) => {
     confirmPopup({
       target: e.currentTarget,
-      message: `Вы хотите убрать ${firstName} из расписания` ,
+      message: `Вы хотите убрать ${firstName} из расписания`,
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger p-1 m-2",
       acceptLabel: "Да",
       accept: () => deleteSession(sessionId),
       rejectLabel: "Отмена",
-      rejectClassName: "p-1 m-2"
+      rejectClassName: "p-1 m-2",
     });
   };
 
@@ -112,7 +116,11 @@ const Schedule = () => {
                   <td
                     key={index}
                     className={styles.session}
-                    onDoubleClick={(e) => session?.patient && confirm(e, session.id, session.patient.firstName)}
+                    onDoubleClick={(e) => {
+                      if (session && "patient" in session) {
+                        confirm(e, session.id, session.patient.firstName);
+                      }
+                    }}
                   >
                     {session
                       ? "patient" in session

@@ -7,6 +7,7 @@ import { Toast } from "primereact/toast";
 import { uploadGallery } from "../../api/uploadGallery";
 import { ConfirmPopup, confirmPopup } from "primereact/confirmpopup";
 import { deleteGallery } from "../../api/deleteGallery";
+import { baseUrl } from "@/shared/constants/baseUrl";
 
 const Gallery = () => {
   const { photos, fetchPhotos } = useGalleryStore();
@@ -42,7 +43,7 @@ const Gallery = () => {
 
   const itemTemplate = (item: { photo: string }) => (
     <Image
-      src={`http://localhost:5000/${item.photo || item.photo}`}
+      src={`${baseUrl}${item.photo || item.photo}`}
       alt={"photo"}
       width={1000}
       height={580}
