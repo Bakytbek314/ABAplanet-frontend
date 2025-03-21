@@ -43,7 +43,7 @@ const Gallery = () => {
 
   const itemTemplate = (item: { photo: string }) => (
     <Image
-      src={`${baseUrl}${item.photo || item.photo}`}
+      src={`${baseUrl}/${item.photo || item.photo}`}
       alt={"photo"}
       width={1000}
       height={580}
@@ -53,7 +53,7 @@ const Gallery = () => {
 
   const thumbnailTemplate = (item: { photo: string, id: number }) => (
     <Image
-      src={`http://localhost:5000/${item.photo}`}
+      src={`${baseUrl}/${item.photo}`}
       alt={"photo"}
       width={100}
       height={70}
