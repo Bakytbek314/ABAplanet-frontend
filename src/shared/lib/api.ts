@@ -12,7 +12,7 @@ export const api = async <T>(
 ): Promise<T> => {
   const { params, headers, ...restOptions } = options;
 
-  const url = new URL(`${baseUrl}/${enpoint}`);
+  const url = new URL(`${baseUrl}${enpoint}`);
 
   const cookies = parseCookies();
   const token = cookies.token;
