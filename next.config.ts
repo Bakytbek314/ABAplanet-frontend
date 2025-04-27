@@ -4,8 +4,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "abaplaneta-backend.onrender.com",
+        protocol: "http",
+        hostname: "localhost",
+        port: '5000',
         pathname: "/**",
       },
     ],

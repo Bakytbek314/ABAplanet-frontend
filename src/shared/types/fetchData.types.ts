@@ -1,11 +1,21 @@
-export interface StorePatient {
+export interface StorePatients {
   patients: PatientsData[];
   fetchPatients: () => void;
+}
+
+export interface StorePatient {
+  patient: PatientsData;
+  fetchPatient: (id: number) => void;
 }
 
 export interface StoreSpecialists {
   specialists: SpecialistsData[];
   fetchSpecialists: () => void;
+}
+
+export interface StoreSpecialist {
+  specialist: SpecialistsData;
+  fetchSpecialist: (id: number) => void;
 }
 
 export interface StoreGroupSession {
@@ -31,6 +41,17 @@ export interface StorePatientCard {
   fetchCards: () => void;
 }
 
+export interface StorePosts {
+  posts: PostData[];
+  fetchPosts: () => void;
+}
+
+export interface PostData {
+  id: number;
+  photo: string | null;
+  description: string;
+}
+
 export interface PatientsData {
   id: number;
   userId: number;
@@ -43,7 +64,7 @@ export interface PatientsData {
     login: string;
     createdAt: Date;
   };
-  individualSession: [];
+  individualSession: IndividualSessionData[];
   groupSessions: [];
   developmentResults: [];
   payments: [];
@@ -61,9 +82,9 @@ export interface SpecialistsData {
     login: string;
     createdAt: Date;
   };
-  individualSession: [];
+  individualSession: IndividualSessionData[];
   groupSessions: [];
-  mainGroupSessions: []
+  mainGroupSessions: [];
 }
 
 export interface GroupSessionData {

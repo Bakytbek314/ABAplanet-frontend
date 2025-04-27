@@ -16,7 +16,7 @@ const AdminSidebar = () => {
     { label: "Пациенты", icon: "pi pi-users", href: "/admin/patients" },
     { label: "Специалисты", icon: "pi pi-users", href: "/admin/specialists" },
     { label: "Пособия", icon: "pi pi-clipboard", href: "/admin/manuals" },
-    { label: "Настройки", icon: "pi pi-cog", href: "/admin/settings" },
+    // { label: "Настройки", icon: "pi pi-cog", href: "/admin/settings" },
   ];
 
   return (

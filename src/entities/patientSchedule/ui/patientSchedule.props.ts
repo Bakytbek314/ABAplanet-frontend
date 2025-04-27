@@ -1,5 +1,7 @@
+import { IndividualSessionData } from "@/shared/types/fetchData.types";
+
 export interface PatientScheduleProps {
-    individualSession: [];
+    individualSession: IndividualSessionData[];
     groupSessions: [];
     patientId: number;
 }

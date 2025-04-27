@@ -1,17 +1,19 @@
 "use client";
+import { useEffect, useState } from "react";
+import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
+import { RadioButton } from "primereact/radiobutton";
 import { useGroupSessionStore } from "@/shared/store/useGroupSessionsStore";
 import { usePatientsStore } from "@/shared/store/usePatientsStore";
 import { useSpecialistsStore } from "@/shared/store/useSpecialistsStore";
-import Button from "@/shared/ui/button/button";
-import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
-import { RadioButton } from "primereact/radiobutton";
-import { useEffect, useState } from "react";
 import { addPatientToGroup } from "../../api/addPatientToGroup";
 import { addSpecialistToGroup } from "../../api/addSpecialitToGroup";
+import Button from "@/shared/ui/button/button";
+import { useSpecialistScdulesStore } from "@/shared/store/useSpecialistScdulesStore";
 
 const AddToGroupSchedule = () => {
   const { specialists, fetchSpecialists } = useSpecialistsStore();
   const { patients, fetchPatients } = usePatientsStore();
+  const { fetchSpecialist } = useSpecialistScdulesStore();
   const { groupSession, fetchGroupSession } = useGroupSessionStore();
 
   const [isPatient, setIsPatient] = useState<boolean>(true);
@@ -51,10 +53,19 @@ const AddToGroupSchedule = () => {
     isPatient
       ? await addPatientToGroup(patientToGroupFormData)
       : await addSpecialistToGroup(specialistToGroupFormData);
+
+    if (specialistToGroupFormData.specialistId) {
+      await fetchSpecialist(specialistToGroupFormData.specialistId);
+    }
+
     setSpecialistToGroupFormData({
       sessionId: 0,
       specialistId: 0,
     });
+
+    setSelectedGroup(null);
+    setSelectedPatient(null);
+    setSelectedSpecialist(null);
   };
 
   useEffect(() => {

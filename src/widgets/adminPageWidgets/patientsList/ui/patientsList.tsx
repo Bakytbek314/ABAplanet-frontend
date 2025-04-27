@@ -15,7 +15,7 @@ const PatientsList = () => {
 
     useEffect(() => {
         fetchPatients();
-    }, [patients]);
+    }, []);
 
   return (
     <Accordion activeIndex={null}>
@@ -67,7 +67,7 @@ const PatientsList = () => {
                 leftIcon="pi pi-chart-bar mr-2"
                 headerClassName={"mr-4"}
               >
-                <PatientChart />
+                <PatientChart developmentResults={elem.developmentResults} />
               </TabPanel>
               <TabPanel header="Финансы" leftIcon="pi pi-dollar mr-2">
                 <PatientFinance payments={elem.payments} debts={elem.debts} patientId={elem.id}/>

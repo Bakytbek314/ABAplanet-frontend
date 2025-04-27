@@ -1,18 +1,18 @@
 "use client";
-import { useSpecialistScdulesStore } from "../store/useSpecialistScdulesStore";
-import styles from "./schedule.module.scss";
-import ChangeSpecialist from "./changeSpecialist/changeSpecialist";
 import { useRef } from "react";
-import { ConfirmPopup, confirmPopup } from "primereact/confirmpopup";
 import { Toast } from "primereact/toast";
+import { ConfirmPopup, confirmPopup } from "primereact/confirmpopup";
+import { useSpecialistScdulesStore } from "../../../../shared/store/useSpecialistScdulesStore";
+import ChangeSpecialist from "./changeSpecialist/changeSpecialist";
 import {
   daysForScheduleTable,
   timesForScheduleTable,
 } from "@/shared/constants/scheduleTime";
 import { deleteIndividualSession } from "../api/deleteIndividualSession";
+import styles from "./schedule.module.scss";
 
 const Schedule = () => {
-  const { individual, group, mainGroup } =
+  const { individual, group, mainGroup, fetchSpecialist } =
     useSpecialistScdulesStore();
 
   const getSession = (day: string, time: string) => {
@@ -55,7 +55,7 @@ const Schedule = () => {
 
   const deleteSession = async (sessionId: number) => {
     try {
-      deleteIndividualSession(sessionId);
+      await deleteIndividualSession(sessionId);
       toast.current?.show({
         severity: "success",
         summary: "Deleted",
@@ -76,7 +76,8 @@ const Schedule = () => {
   const confirm = (
     e: React.MouseEvent<HTMLTableCellElement>,
     sessionId: number,
-    firstName: string
+    firstName: string,
+    specialistId: number
   ) => {
     confirmPopup({
       target: e.currentTarget,
@@ -84,7 +85,10 @@ const Schedule = () => {
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger p-1 m-2",
       acceptLabel: "Да",
-      accept: () => deleteSession(sessionId),
+      accept: async () => {
+        await deleteSession(sessionId);
+        await fetchSpecialist(specialistId);
+      },
       rejectLabel: "Отмена",
       rejectClassName: "p-1 m-2",
     });
@@ -118,7 +122,12 @@ const Schedule = () => {
                     className={styles.session}
                     onDoubleClick={(e) => {
                       if (session && "patient" in session) {
-                        confirm(e, session.id, session.patient.firstName);
+                        confirm(
+                          e,
+                          session.id,
+                          session.patient.firstName,
+                          session.specialistId
+                        );
                       }
                     }}
                   >

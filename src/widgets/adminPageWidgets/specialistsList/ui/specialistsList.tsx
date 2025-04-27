@@ -3,17 +3,17 @@ import { useEffect } from "react";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { TabPanel, TabView } from "primereact/tabview";
 import { Avatar } from "primereact/avatar";
+import { useSpecialistsStore } from "@/shared/store/useSpecialistsStore";
 import SpecialistInfo from "@entities/specialistInfo/ui/specialistInfo";
 import TextType from "@shared/ui/textType/textType";
 import SpecialistSchedule from "@/entities/specialistSchedule/ui/specialistSchedule";
-import { useSpecialistsStore } from "@/shared/store/useSpecialistsStore";
 
 const SpecialistsList = () => {
   const { specialists, fetchSpecialists } = useSpecialistsStore();
 
   useEffect(() => {
     fetchSpecialists();
-  }, [specialists]);
+  }, []);
 
   return (
     <Accordion activeIndex={null}>

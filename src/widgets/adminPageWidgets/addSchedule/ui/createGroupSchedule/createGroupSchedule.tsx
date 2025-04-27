@@ -5,7 +5,7 @@ import {
   InputNumber,
   InputNumberValueChangeEvent,
 } from "primereact/inputnumber";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createGroup } from "../../api/createGroup";
 import { useSpecialistsStore } from "@/shared/store/useSpecialistsStore";
 

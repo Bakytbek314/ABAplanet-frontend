@@ -8,8 +8,11 @@ import { addPatient } from "../api/addPatient";
 import TextType from "@shared/ui/textType/textType";
 import Button from "@/shared/ui/button/button";
 import styles from "./addPatient.module.scss";
+import { usePatientsStore } from "@/shared/store/usePatientsStore";
 
 const AddPatient = () => {
+
+  const { fetchPatients } = usePatientsStore();
 
   const [formData, setFormData] = useState<AddPatientFormData>({
     firstName: "",
@@ -29,6 +32,7 @@ const AddPatient = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await addPatient(formData);
+    await fetchPatients();
     setFormData({
       firstName: "",
       lastName: "",

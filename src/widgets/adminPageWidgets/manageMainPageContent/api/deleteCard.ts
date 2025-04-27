@@ -1,10 +1,10 @@
 import { api } from "@/shared/lib/api"
 
-export const deleteCard = (id: number) => {
+export const deleteCard = async (id: number) => {
     try {
-        api(`specialist-card/${id}`, {
+        await api(`specialist-card/${id}`, {
             method: "DELETE"
-        })
+        });
     } catch (error) {
         throw new Error(`Ошибка при удалении ${error}`)
     }

@@ -3,13 +3,15 @@ import { DropdownChangeEvent, Dropdown } from "primereact/dropdown";
 import { addSceduleFormDays } from "@/shared/constants/addSceduleForm";
 import { usePatientsStore } from "@/shared/store/usePatientsStore";
 import { useSpecialistsStore } from "@/shared/store/useSpecialistsStore";
-import { addIndividualSchedule } from "../../api/addIndividualSchedule";
 import { scheduleTime } from "@/shared/constants/scheduleTime";
+import { useSpecialistScdulesStore } from "@/shared/store/useSpecialistScdulesStore";
 import Button from "@/shared/ui/button/button";
+import { addIndividualSchedule } from "../../api/addIndividualSchedule";
 
 const AddIndividualSchedule = () => {
   const { specialists, fetchSpecialists } = useSpecialistsStore();
   const { patients, fetchPatients } = usePatientsStore();
+  const { fetchSpecialist } = useSpecialistScdulesStore();
 
   const [selectedSpecialist, setSelectedSpecialist] = useState<string | null>(
     null
@@ -72,6 +74,9 @@ const AddIndividualSchedule = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await addIndividualSchedule(individualFormData);
+    if (individualFormData.specialistId) {
+      await fetchSpecialist(individualFormData.specialistId);
+    }
 
     setIndividualFormData({
       patientId: 0,
@@ -80,6 +85,12 @@ const AddIndividualSchedule = () => {
       endTime: "",
       day: "",
     });
+
+    setSelectedSpecialist(null);
+    setSelectedPatient(null);
+    setSelectedDay(null);
+    setSelectedStartTime(null);
+    setSelectedEndTime(null);
   };
 
   useEffect(() => {

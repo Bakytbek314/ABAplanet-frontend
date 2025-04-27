@@ -1,7 +1,7 @@
 import React from 'react';
 import Manuals from "@features/manuals/ui/manuals";
 
-const Manual = () => {
+const ManualsPage = () => {
     return (
         <div className={"wrapper"}>
             <Manuals/>
@@ -9,4 +9,4 @@ const Manual = () => {
     );
 };
 
-export default Manual;
+export default ManualsPage;

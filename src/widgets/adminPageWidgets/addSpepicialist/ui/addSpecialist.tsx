@@ -16,8 +16,12 @@ import {
 import TextType from "@shared/ui/textType/textType";
 import Button from "@/shared/ui/button/button";
 import styles from "./addSpecialist.module.scss";
+import { useSpecialistsStore } from "@/shared/store/useSpecialistsStore";
 
 const AddSpecialist = () => {
+
+  const { fetchSpecialists } = useSpecialistsStore();
+
   const [selectedSpecialization, setSelectedSpecialization] = useState<
     string | null
   >(null);
@@ -55,6 +59,7 @@ const AddSpecialist = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await addSpecialist(formData);
+    await fetchSpecialists();
     setFormData({
       firstName: "",
       lastName: "",

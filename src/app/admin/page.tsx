@@ -4,7 +4,6 @@ const Admin = () => {
     return (
         <main className="wrapper">
             <ManageMainPageContent/>
-            {/* <h1>Главная</h1> */}
         </main>
     );
 };
