@@ -42,6 +42,7 @@ const Gallery = () => {
         height={580}
         style={{ width: "100%", display: "block" }}
         key={photos.length}
+        unoptimized
       />
     );
   };
@@ -58,6 +59,7 @@ const Gallery = () => {
         style={{ display: "block", cursor: "pointer" }}
         onDoubleClick={(e) => confirm(e, item.id)}
         key={photos.length}
+        unoptimized
       />
     );
   };

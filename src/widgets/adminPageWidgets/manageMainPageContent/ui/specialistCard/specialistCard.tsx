@@ -89,12 +89,14 @@ const SpecialistCard = (props: SpecialistCardProps) => {
             width={50}
             height={100}
             alt="photo"
+            unoptimized
           />
           <Image
             src={`${baseUrl}/${currentDiplomaPhoto}`}
             width={50}
             height={100}
             alt="diploma"
+            unoptimized
           />
         </>
       ) : (

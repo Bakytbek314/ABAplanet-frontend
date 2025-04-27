@@ -13,7 +13,7 @@ const StartBlock = () => {
             <div className="container">
                 <div className={styles.start_block}>
                     <div className={styles.img}>
-                        <Image src={Photo} alt=""/>
+                        <Image src={Photo} alt="photo" unoptimized/>
                     </div>
                     <div className={styles.content_text}>
                         <div className={styles.title}>
@@ -43,7 +43,7 @@ const StartBlock = () => {
                 </div>
             </div>
             <div className={styles.circles_photo}>
-                <Image src={CirclesPhoto} alt="photo"/>
+                <Image src={CirclesPhoto} alt="photo" unoptimized/>
             </div>
         </section>
     );
