@@ -9,7 +9,7 @@ const Post = (props: PostProps) => {
 
   return (
     <div className={styles.post_card}>
-      {photo && <Image src={`${baseUrl}/${photo}`} alt="post photo" width={1000} height={1000} unoptimized />}
+      {photo && <Image src={photo} alt="post photo" width={1000} height={1000} unoptimized />}
       <TextType variant="mediumP">{description}</TextType>
     </div>
   );

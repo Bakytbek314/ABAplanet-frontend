@@ -85,14 +85,14 @@ const SpecialistCard = (props: SpecialistCardProps) => {
       {!isChange ? (
         <>
           <Image
-            src={`${baseUrl}/${currentPhoto}`}
+            src={currentPhoto}
             width={50}
             height={100}
             alt="photo"
             unoptimized
           />
           <Image
-            src={`${baseUrl}/${currentDiplomaPhoto}`}
+            src={currentDiplomaPhoto}
             width={50}
             height={100}
             alt="diploma"

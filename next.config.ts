@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "abaplaneta-backend.onrender.com",
+        hostname: "res.cloudinary.com",
         pathname: "/**",
       },
     ],

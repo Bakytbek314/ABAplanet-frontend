@@ -25,7 +25,7 @@ const Gallery = () => {
                     {photos.map((elem, index) => (
                         <SwiperSlide key={index}>
                             <div className={styles.slider}>
-                                <Image src={`${baseUrl}/${elem.photo}`} alt="room" width={1000} height={1000} unoptimized/>
+                                <Image src={elem.photo} alt="room" width={1000} height={1000} />
                             </div>
                         </SwiperSlide>
                     ))}

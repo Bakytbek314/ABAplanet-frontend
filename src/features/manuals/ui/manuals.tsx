@@ -11,6 +11,7 @@ import { Button } from "primereact/button";
 import { uploadDocument } from "../api/upload";
 import { Toast } from "primereact/toast";
 import { useToast } from "@/shared/lib/useToast";
+import { deleteDocument } from "../api/delete";
 
 const Manuals = () => {
   const { fetchManuals, manuals } = useManualsStore();
@@ -32,12 +33,24 @@ const Manuals = () => {
 
   const manualDocumentChange = (e: any) => {
     const file = e.files[0];
-    console.log("files>>>", e.files[0]);
 
     setUploadManualData({
       ...uploadManualData,
       document: file,
     });
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteDocument(id);
+      await fetchManuals();
+      useToast(toast, "success", "Успешно", "Документ удален");
+      setUploadManualData({ name: "", document: null });
+    } catch (error) {
+      useToast(toast, "error", "Ошибка", "Документ не удален");
+    } finally {
+      fileUploadRef.current?.clear();
+    }
   };
 
   const handleSubmit = async () => {
@@ -85,13 +98,13 @@ const Manuals = () => {
   };
 
   const actionBodyTemplate = (endpoint: string) => (
-    <Link href={`${baseUrl}/${endpoint}`} target="_blank">
+    <Link href={endpoint} target="_blank">
       <p className="text-primary hover:text-cyan-700">Просмотреть</p>
     </Link>
   );
 
-  const deleteBodyTemplate = (endpoint: string) => (
-    <Button className="p-1" severity="danger">
+  const deleteBodyTemplate = (id: number) => (
+    <Button className="p-1" severity="danger" onClick={() => handleDelete(id)}>
       <i className="pi pi-trash"></i>
     </Button>
   );

@@ -15,13 +15,12 @@ const ProfileCard = (props: ProfileCardProps) => {
         <TextType variant="bigP" align="center">
           {firstName} {lastName}
         </TextType>
-        <TextType variant="bigP">Логин: {login}</TextType>
-        {parentFirstName ||
-          (parentLastName && (
-            <TextType variant="bigP">
-              Родитель: {parentFirstName} {parentLastName}
-            </TextType>
-          ))}
+        <TextType variant="bigP" align="center">{login}</TextType>
+        {(parentFirstName && parentLastName) && (
+          <TextType variant="mediumP" align="center">
+            {parentFirstName} {parentLastName}
+          </TextType>
+        )}
       </div>
     </div>
   );

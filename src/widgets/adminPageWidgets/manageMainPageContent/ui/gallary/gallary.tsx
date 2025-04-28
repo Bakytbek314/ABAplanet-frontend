@@ -36,13 +36,13 @@ const Gallery = () => {
 
     return (
       <Image
-        src={`${baseUrl}/${item.photo}`}
+        src={item.photo}
         alt="photo"
         width={1000}
         height={580}
         style={{ width: "100%", display: "block" }}
         key={photos.length}
-        unoptimized
+        // unoptimized
       />
     );
   };
@@ -52,14 +52,14 @@ const Gallery = () => {
 
     return (
       <Image
-        src={`${baseUrl}/${item.photo}`}
+        src={item.photo}
         alt="thumbnail"
         width={100}
         height={70}
         style={{ display: "block", cursor: "pointer" }}
         onDoubleClick={(e) => confirm(e, item.id)}
         key={photos.length}
-        unoptimized
+        // unoptimized
       />
     );
   };
