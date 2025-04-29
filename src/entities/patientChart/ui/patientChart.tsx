@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Chart } from "primereact/chart";
+import { ChartOptions, ChartData } from "chart.js";
 
 interface DevelopmentResult {
   id: number;
@@ -15,142 +16,128 @@ interface DevelopmentResult {
 }
 
 interface PatientChartProps {
-  developmentResults: DevelopmentResult[];
+  developmentResults?: DevelopmentResult[];
 }
 
-const PatientChart: React.FC<PatientChartProps> = ({ developmentResults }) => {
-  const [chartData, setChartData] = useState({});
-  const [chartOptions, setChartOptions] = useState({});
+const PatientChart: React.FC<PatientChartProps> = ({ developmentResults = [] }) => {
+  const [chartData, setChartData] = useState<ChartData>({ datasets: [], labels: [] });
+  const [chartOptions, setChartOptions] = useState<ChartOptions>({});
 
   useEffect(() => {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue("--text-color");
-    const textColorSecondary = documentStyle.getPropertyValue("--text-color-secondary");
-    const surfaceBorder = documentStyle.getPropertyValue("--surface-border");
+    const processChartData = () => {
+      const documentStyle = getComputedStyle(document.documentElement);
+      const textColor = documentStyle.getPropertyValue("--text-color") || "#000";
+      const textColorSecondary = documentStyle.getPropertyValue("--text-color-secondary") || "#666";
+      const surfaceBorder = documentStyle.getPropertyValue("--surface-border") || "#ddd";
 
-    const groupedResults: { [key: string]: DevelopmentResult[] } = {};
-
-    developmentResults && developmentResults.forEach((result) => {
-      const specialization = result.specialist.specialization;
-      if (!groupedResults[specialization]) {
-        groupedResults[specialization] = [];
-      }
-      groupedResults[specialization].push(result);
-    });
-
-    Object.values(groupedResults).forEach((results) => {
-      results.sort(
-        (a, b) => new Date(a.evaluationDate).getTime() - new Date(b.evaluationDate).getTime()
+      // Группировка результатов по специализации
+      const groupedResults = developmentResults.reduce<Record<string, DevelopmentResult[]>>(
+        (acc, result) => {
+          const specialization = result.specialist.specialization;
+          if (!acc[specialization]) acc[specialization] = [];
+          acc[specialization].push(result);
+          return acc;
+        },
+        {}
       );
-    });
 
-    const allDatesSet = new Set(
-      developmentResults && developmentResults.map((result) => {
-        const date = new Date(result.evaluationDate);
-        return `${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1)
-          .toString()
-          .padStart(2, "0")}.${date.getFullYear()}`;
-      })
-    );
+      // Получение уникальных отсортированных дат
+      const allDates = Array.from(
+        new Set(
+          developmentResults.map((r) => 
+            new Date(r.evaluationDate).toISOString().split('T')[0]
+          )
+        )
+      ).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
-    const allDates = Array.from(allDatesSet).sort(
-      (a, b) =>
-        new Date(a.split(".").reverse().join("-")).getTime() -
-        new Date(b.split(".").reverse().join("-")).getTime()
-    );
+      // Создание датасетов
+      const datasets = Object.entries(groupedResults).map(([specialization, results], index) => {
+        const dateMap = results.reduce<Record<string, number>>((acc, result) => {
+          const dateKey = new Date(result.evaluationDate).toISOString().split('T')[0];
+          acc[dateKey] = result.testResults;
+          return acc;
+        }, {});
 
-    const datasets = Object.entries(groupedResults).map(([specialization, results], index) => ({
-      label: specialization,
-      data: allDates.map((date) => {
-        const result = results.find((r) => {
-          const d = new Date(r.evaluationDate);
-          const formatted = `${d.getDate().toString().padStart(2, "0")}.${(d.getMonth() + 1)
-            .toString()
-            .padStart(2, "0")}.${d.getFullYear()}`;
-          return formatted === date;
-        });
-        return result ? result.testResults : null;
-      }),
-      borderColor: documentStyle.getPropertyValue("--blue-500"),
-      fill: false,
-      tension: 0.4,
-    }));
+        return {
+          label: specialization,
+          data: allDates.map(date => dateMap[date] ?? null),
+          borderColor: `hsl(${index * 60}, 70%, 50%)`,
+          tension: 0.4,
+          fill: false,
+          pointRadius: 5,
+          pointHoverRadius: 7
+        };
+      });
 
-    const data = {
-      labels: allDates,
-      datasets,
-    };
+      // Конфигурация данных
+      const data: ChartData = {
+        labels: allDates.map(date => 
+          new Date(date).toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          })
+        ),
+        datasets
+      };
 
-    const options = {
-      stacked: false,
-      maintainAspectRatio: false,
-      aspectRatio: 0.6,
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function (tooltipItem: any) {
-              const index = tooltipItem.dataIndex;
-              const dataset = tooltipItem.dataset;
-              const progress = groupedResults[dataset.label]?.[index]?.progress || "";
-              return `Баллы: ${tooltipItem.formattedValue}, Прогресс: ${progress}`;
-            },
+      // Опции графика
+      const options: ChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: { color: textColor }
           },
-        },
-        legend: {
-          labels: {
-            color: textColor,
-          },
-          onClick: (e: any, legendItem: any, legend: any) => {
-            const index = legendItem.datasetIndex;
-            const ci = legend.chart;
-
-            const clickedDataset = ci.data.datasets[index];
-            const isOnlyOneVisible = ci.data.datasets.every(
-              (d: any, i: number) => (i === index && !d.hidden) || (i !== index && d.hidden)
-            );
-
-            if (isOnlyOneVisible) {
-              ci.data.datasets.forEach((dataset: any) => {
-                dataset.hidden = false;
-              });
-            } else {
-              ci.data.datasets.forEach((dataset: any, i: number) => {
-                dataset.hidden = i !== index;
-              });
+          tooltip: {
+            callbacks: {
+              label: (context) => {
+                const result = developmentResults.find(r => 
+                  new Date(r.evaluationDate).toISOString().split('T')[0] === allDates[context.dataIndex]
+                );
+                return `Баллы: ${context.formattedValue}, Прогресс: ${result?.progress || 'нет данных'}`;
+              }
             }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: surfaceBorder },
+            ticks: { color: textColorSecondary }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: surfaceBorder },
+            ticks: { color: textColorSecondary }
+          }
+        }
+      };
 
-            ci.update();
-          },
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder,
-          },
-        },
-        y: {
-          beginAtZero: true,
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder,
-          },
-        },
-      },
+      return { data, options };
     };
 
-    setChartData(data);
-    setChartOptions(options);
+    if (developmentResults.length > 0) {
+      const { data, options } = processChartData();
+      setChartData(data);
+      setChartOptions(options);
+    }
   }, [developmentResults]);
 
   return (
-    <div className="">
-      <Chart type="line" data={chartData} options={chartOptions} />
+    <div className="p-4 bg-white rounded-lg shadow-md">
+      {developmentResults.length > 0 ? (
+        <Chart 
+          type="line" 
+          data={chartData} 
+          options={chartOptions} 
+          style={{ height: '400px' }}
+        />
+      ) : (
+        <div className="text-center text-gray-500 py-8">
+          Нет данных для отображения графика
+        </div>
+      )}
     </div>
   );
 };
