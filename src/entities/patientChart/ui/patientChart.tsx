@@ -41,26 +41,26 @@ const PatientChart: React.FC<PatientChartProps> = ({ developmentResults = [] }) 
         {}
       );
 
-      // Получение уникальных отсортированных дат
-      const allDates = Array.from(
+      // Получение уникальных отсортированных дат и времени
+      const allDateTimes = Array.from(
         new Set(
-          developmentResults.map((r) => 
-            new Date(r.evaluationDate).toISOString().split('T')[0]
+          developmentResults.map(r => 
+            new Date(r.evaluationDate).toISOString()
           )
         )
       ).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
       // Создание датасетов
       const datasets = Object.entries(groupedResults).map(([specialization, results], index) => {
-        const dateMap = results.reduce<Record<string, number>>((acc, result) => {
-          const dateKey = new Date(result.evaluationDate).toISOString().split('T')[0];
-          acc[dateKey] = result.testResults;
+        const dateTimeMap = results.reduce<Record<string, number>>((acc, result) => {
+          const dateTimeKey = new Date(result.evaluationDate).toISOString();
+          acc[dateTimeKey] = result.testResults;
           return acc;
         }, {});
 
         return {
           label: specialization,
-          data: allDates.map(date => dateMap[date] ?? null),
+          data: allDateTimes.map(datetime => dateTimeMap[datetime] ?? null),
           borderColor: `hsl(${index * 60}, 70%, 50%)`,
           tension: 0.4,
           fill: false,
@@ -71,13 +71,16 @@ const PatientChart: React.FC<PatientChartProps> = ({ developmentResults = [] }) 
 
       // Конфигурация данных
       const data: ChartData = {
-        labels: allDates.map(date => 
-          new Date(date).toLocaleDateString('ru-RU', {
+        labels: allDateTimes.map(datetime => {
+          const date = new Date(datetime);
+          return date.toLocaleDateString('ru-RU', {
             day: '2-digit',
             month: '2-digit',
-            year: 'numeric'
-          })
-        ),
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+        }),
         datasets
       };
 
@@ -94,9 +97,13 @@ const PatientChart: React.FC<PatientChartProps> = ({ developmentResults = [] }) 
             callbacks: {
               label: (context) => {
                 const result = developmentResults.find(r => 
-                  new Date(r.evaluationDate).toISOString().split('T')[0] === allDates[context.dataIndex]
+                  new Date(r.evaluationDate).toISOString() === allDateTimes[context.dataIndex]
                 );
-                return `Баллы: ${context.formattedValue}, Прогресс: ${result?.progress || 'нет данных'}`;
+                return [
+                  `Баллы: ${context.formattedValue}`,
+                  `Прогресс: ${result?.progress || 'нет данных'}`,
+                  `Время: ${new Date(allDateTimes[context.dataIndex]).toLocaleTimeString('ru-RU')}`
+                ];
               }
             }
           }
@@ -104,7 +111,11 @@ const PatientChart: React.FC<PatientChartProps> = ({ developmentResults = [] }) 
         scales: {
           x: {
             grid: { color: surfaceBorder },
-            ticks: { color: textColorSecondary }
+            ticks: { 
+              color: textColorSecondary,
+              maxRotation: 45,
+              minRotation: 45
+            }
           },
           y: {
             beginAtZero: true,
