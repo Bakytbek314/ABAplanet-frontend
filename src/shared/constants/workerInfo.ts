@@ -1,4 +1,4 @@
-import {WorkerInfo} from "../types/workerInfoTypes.ts";
+import {WorkerInfo} from "../types/workerInfoTypes";
 import NiluPhoto from "../assets/images/nilu.webp";
 import ArukePhoto from "../assets/images/aru.webp";
 import AyshaPhoto from "../assets/images/aysha.webp";

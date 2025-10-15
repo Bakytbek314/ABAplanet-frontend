@@ -9,15 +9,15 @@ import Footer from "@/widgets/mainPageWidgets/footer/ui/footer";
 
 export default function Home() {
   return (
-      <>
-        <Header/>
-          <StartBlock/>
-          <OurServices/>
-          <OurTeam/>
-          <Gallery/>
-          <OurMission/>
-          <OurContacts/>
-        <Footer/>
-      </>
+    <>
+      <Header />
+      <StartBlock />
+      <OurServices />
+      <OurTeam />
+      <Gallery />
+      <OurMission />
+      <OurContacts />
+      <Footer />
+    </>
   );
 }

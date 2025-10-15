@@ -1,9 +1,9 @@
 import { api } from "@/shared/lib/api";
 import { create } from "zustand";
-import { StorePatient, PatientsData } from "@/shared/types/fetchData.types";
+import { StorePatients, PatientsData } from "@/shared/types/fetchData.types";
 
 
-export const usePatientsStore = create<StorePatient>((set) => ({
+export const usePatientsStore = create<StorePatients>((set) => ({
   patients: [],
 
   fetchPatients: async () => {

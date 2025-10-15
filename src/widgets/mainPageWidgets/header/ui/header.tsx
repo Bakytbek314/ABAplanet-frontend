@@ -1,51 +1,34 @@
-"use client"
-import {useState} from "react";
-import {useBlockedScroll} from "@shared/lib/useBlockedScroll";
-import BurgerMenu from "./burgerMenu/burgerMenu";
-import { RxHamburgerMenu } from "react-icons/rx";
-import {LogoIcon} from "@shared/assets/icons/logo";
+import { LogoIcon } from "@shared/assets/icons/logo";
 import styles from "./header.module.scss";
+import TextType from "@/shared/ui/textType/textType";
+import Link from "next/link";
 
 const Header = () => {
-
-    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-    const onMenuOpen = () => {
-        // setIsMenuOpen(!isMenuOpen);
-    };
-
-    const onMenuClose = () => {
-        setIsMenuOpen(!isMenuOpen);
-    }
-
-    useBlockedScroll(isMenuOpen);
-
-    return (
-        <>
-            <header>
-                <div className="container">
-                    <nav className={styles.navigation}>
-                        <div className={styles.logo}>
-                            <LogoIcon />
-                        </div>
-                        <div className={styles.links}>
-                            <div className={styles.list}>
-                                <ul>
-                                    <li>Контакты</li>
-                                    <li>Галерея</li>
-                                    <li>Наша команда</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className={styles.burger} onClick={onMenuOpen}>
-                            <RxHamburgerMenu />
-                        </div>
-                    </nav>
-                </div>
-            </header>
-            {/*{ isMenuOpen && <BurgerMenu onMenuClose={onMenuClose} /> }*/}
-        </>
-    )
-}
+  return (
+    <>
+      <header>
+        <div className="container">
+          <nav className={styles.navigation}>
+            <div className={styles.logo}>
+              <LogoIcon />
+            </div>
+            <div className={styles.links}>
+              <div className={styles.list}>
+                <ul>
+                  <li>
+                    <Link href={"/auth"}>
+                      <TextType variant="mediumP">Войти</TextType>
+                      <i className="pi pi-sign-in" />
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+    </>
+  );
+};
 
 export default Header;

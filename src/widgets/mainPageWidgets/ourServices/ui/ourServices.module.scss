@@ -1,4 +1,4 @@
-@import "@app/styles/mixins.scss";
+@use "@app/styles/mixins.scss" as *;
 
 .our_services_section {
   background-color: var(--color-dark-blue);

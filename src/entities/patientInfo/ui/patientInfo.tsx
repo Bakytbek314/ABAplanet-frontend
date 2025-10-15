@@ -1,7 +1,7 @@
 import { useFormateDate } from "@/shared/lib/useFormateDate";
-import styles from "./patientInfo.module.scss";
-import TextType from "@text/*";
 import { PatientInfoProps } from "./patientInfo.props";
+import TextType from "@shared/ui/textType/textType";
+import styles from "./patientInfo.module.scss";
 
 const PatientInfo = (props: PatientInfoProps) => {
   const {
@@ -14,50 +14,29 @@ const PatientInfo = (props: PatientInfoProps) => {
     createdAt,
   } = props;
 
+  const renderField = (label: string, value: string) => (
+    <div className={styles.info}>
+      <div className={styles.info_title}>
+        <TextType variant="bigP">{label}</TextType>
+      </div>
+      <div>
+        <TextType variant="bigP">{value}</TextType>
+      </div>
+    </div>
+  );
+
   return (
     <div className={styles.patient_info}>
+      {renderField("Login", login)}
+      {renderField("ФИО", `${firstName} ${lastName}`)}
+      {renderField("Родитель", `${parentFirstName} ${parentLastName}`)}
+      {renderField("Телефон", telephoneNumber)}
       <div className={styles.info}>
         <div className={styles.info_title}>
-          <TextType variant={"bigP"}>Login</TextType>
+          <TextType variant="bigP">Дата регистрации</TextType>
         </div>
         <div>
-          <TextType variant={"bigP"}>{login}</TextType>
-        </div>
-      </div>
-      <div className={styles.info}>
-        <div className={styles.info_title}>
-          <TextType variant={"bigP"}>ФИО</TextType>
-        </div>
-        <div>
-          <TextType variant={"bigP"}>
-            {firstName} {lastName}
-          </TextType>
-        </div>
-      </div>
-      <div className={styles.info}>
-        <div className={styles.info_title}>
-          <TextType variant={"bigP"}>Родитель</TextType>
-        </div>
-        <div>
-          <TextType variant={"bigP"}>
-            {parentFirstName} {parentLastName}
-          </TextType>
-        </div>
-      </div>
-      <div className={styles.info}>
-        <div className={styles.info_title}>
-          <TextType variant={"bigP"}>Телефон</TextType>
-        </div>
-        <div>
-          <TextType variant={"bigP"}>{telephoneNumber}</TextType>
-        </div>
-      </div>
-      <div className={styles.info}>
-        <div className={styles.info_title}>
-          <TextType variant={"bigP"}>Дата регистрации</TextType>
-        </div>
-        <div>
-          <TextType variant={"bigP"}>{useFormateDate(createdAt)}</TextType>
+          <TextType variant="bigP">{useFormateDate(createdAt)}</TextType>
         </div>
       </div>
     </div>

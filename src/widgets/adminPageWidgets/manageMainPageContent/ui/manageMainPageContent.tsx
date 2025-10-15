@@ -17,7 +17,7 @@ const ManageMainPageContent = () => {
 
   useEffect(() => {
     fetchCards();
-  }, [cards]);
+  }, []);
   return (
     <Accordion activeIndex={null} className="flex flex-column gap-2">
       <AccordionTab header={header("Карточки специалистов")}>

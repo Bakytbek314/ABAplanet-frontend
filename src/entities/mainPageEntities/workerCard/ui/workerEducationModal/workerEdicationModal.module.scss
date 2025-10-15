@@ -1,4 +1,4 @@
-@import "@app/styles/mixins.scss";
+@use "@app/styles/mixins.scss" as *;
 
 .worker_education_modal_popup {
   width: 100%;

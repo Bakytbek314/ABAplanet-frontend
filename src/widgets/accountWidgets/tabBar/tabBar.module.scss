@@ -1,0 +1,28 @@
+.tab_bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 30px;
+  background-color: var(--color-white);
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    li i {
+      font-size: 22px;
+    }
+  }
+}
+
+.tab_bar ul li a {
+  color: var(--color-grey-dark);
+  transition: color 0.2s;
+}
+
+.tab_bar ul li a.active {
+    color: var(--color-light-blue);
+}

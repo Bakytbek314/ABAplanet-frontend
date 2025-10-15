@@ -6,7 +6,10 @@ export const addSpecialist = async ( formData: AddSpecialistFormData ) => {
     try {
         await api(`auth/register`, {
             method: "POST",
-            body: JSON.stringify({...formData, role: "SPECIALIST"})
+            body: JSON.stringify({...formData, role: "SPECIALIST"}),
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
     } catch (error) {
         console.error("Ошибка при создании специалиста:", error);

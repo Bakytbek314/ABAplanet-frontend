@@ -1,5 +1,5 @@
 import {FaInstagram, FaWhatsapp, FaPhoneAlt, FaMapMarkerAlt} from "react-icons/fa";
-import TextType from "@text/";
+import TextType from "@shared/ui/textType/textType";
 import styles from "./footer.module.scss";
 
 const Footer = () => {

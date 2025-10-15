@@ -5,5 +5,5 @@ export interface PatientInfoProps {
     parentLastName: string;
     login: string;
     telephoneNumber: string;
-    createdAt: string;
+    createdAt: Date;
 }

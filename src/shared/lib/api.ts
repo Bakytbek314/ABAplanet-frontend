@@ -1,3 +1,6 @@
+import { parseCookies } from "nookies";
+import { baseUrl } from "../constants/baseUrl";
+
 type FetchOptions = RequestInit & {
   params?: Record<string, string | number>;
   headers?: Record<string, string>;
@@ -9,7 +12,10 @@ export const api = async <T>(
 ): Promise<T> => {
   const { params, headers, ...restOptions } = options;
 
-  const url = new URL(`http://localhost:5000/${enpoint}`);
+  const url = new URL(`${baseUrl}/${enpoint}`);
+
+  const cookies = parseCookies();
+  const token = cookies.token;
 
   if (params) {
     Object.entries(url).forEach(([key, value]) => {
@@ -20,12 +26,12 @@ export const api = async <T>(
   const response = await fetch(url.toString(), {
     ...restOptions,
     headers: {
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
       ...headers,
     },
   });
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(`Ошибка запроса: ${response.statusText}`);
   }
 

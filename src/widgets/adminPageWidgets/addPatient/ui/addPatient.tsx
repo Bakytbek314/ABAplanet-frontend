@@ -5,11 +5,14 @@ import { InputText } from "primereact/inputtext";
 import { addPatientForm } from "@/shared/constants/addPatientForm";
 import { AddPatientFormData } from "@/shared/types/fetchData.types";
 import { addPatient } from "../api/addPatient";
-import TextType from "@text/*";
+import TextType from "@shared/ui/textType/textType";
 import Button from "@/shared/ui/button/button";
 import styles from "./addPatient.module.scss";
+import { usePatientsStore } from "@/shared/store/usePatientsStore";
 
 const AddPatient = () => {
+
+  const { fetchPatients } = usePatientsStore();
 
   const [formData, setFormData] = useState<AddPatientFormData>({
     firstName: "",
@@ -29,6 +32,7 @@ const AddPatient = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await addPatient(formData);
+    await fetchPatients();
     setFormData({
       firstName: "",
       lastName: "",
@@ -68,7 +72,7 @@ const AddPatient = () => {
                 name={name}
                 placeholder={placeholder}
                 onChange={handleChange}
-                value={formData[name]}
+                value={formData[name as keyof AddPatientFormData]}
                 className="p-2"
                 required
               />

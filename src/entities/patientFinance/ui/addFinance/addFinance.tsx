@@ -9,8 +9,10 @@ import { addFinance } from "../../api/api";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import TextType from "@/shared/ui/textType/textType";
 import { AddFinanceProps } from "./addFinance.props";
+import { usePatientsStore } from "@/shared/store/usePatientsStore";
 
 const AddFinance = ({ patientId }: AddFinanceProps) => {
+  const { fetchPatients } = usePatientsStore();
   const [isPayment, setIsPayment] = useState<boolean>(false);
   const [financeFormData, setFinanceFormData] = useState({
     patientId: patientId,
@@ -20,6 +22,7 @@ const AddFinance = ({ patientId }: AddFinanceProps) => {
   const handleFinanceFormData = (e: React.FormEvent) => {
     e.preventDefault();
     addFinance(financeFormData, isPayment);
+    fetchPatients();
   };
 
   const header = () => (
@@ -29,7 +32,7 @@ const AddFinance = ({ patientId }: AddFinanceProps) => {
   );
 
   return (
-    <Accordion className="mt-2">
+    <Accordion className="mt-3">
       <AccordionTab header={header}>
         <form className="flex gap-2 p-2" onSubmit={handleFinanceFormData}>
           <div className="grid">
@@ -45,7 +48,6 @@ const AddFinance = ({ patientId }: AddFinanceProps) => {
                 Задолженность
               </label>
             </div>
-
             <div className="flex align-items-center col-12">
               <RadioButton
                 inputId="payment"
@@ -67,10 +69,11 @@ const AddFinance = ({ patientId }: AddFinanceProps) => {
               <InputNumber
                 inputId="integeronly"
                 value={financeFormData.amount}
+                size={5}
                 onValueChange={(e: InputNumberValueChangeEvent) =>
                   setFinanceFormData({
                     ...financeFormData,
-                    amount: e.value,
+                    amount: e.value ?? 0,
                   })
                 }
               />

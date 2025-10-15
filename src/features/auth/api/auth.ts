@@ -9,7 +9,10 @@ export const auth = async (data: {}): Promise<Res | null> => {
     try {
         const res: Res = await api(`auth/login`, {
             method: "POST",
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
         })
 
         setCookie(null, "token", res.accessToken, {

@@ -7,7 +7,7 @@ import { usePatientsStore } from "@/shared/store/usePatientsStore";
 import PatientChart from "@entities/patientChart/ui/patientChart";
 import PatientInfo from "@entities/patientInfo/ui/patientInfo";
 import PatientSchedule from "@/entities/patientSchedule/ui/patientSchedule";
-import TextType from "@text/*";
+import TextType from "@shared/ui/textType/textType";
 import PatientFinance from "@/entities/patientFinance/ui/patientFinance";
 
 const PatientsList = () => {
@@ -15,7 +15,7 @@ const PatientsList = () => {
 
     useEffect(() => {
         fetchPatients();
-    }, [patients]);
+    }, []);
 
   return (
     <Accordion activeIndex={null}>
@@ -25,25 +25,25 @@ const PatientsList = () => {
             (
               <span className="flex align-items-center gap-2 p-2 w-full">
                 <Avatar
-                  image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png"
+                  image=""
                   shape="circle"
-                  size={"large"}
+                  size={"normal"}
                 />
                 <span className="font-bold white-space-nowrap">
-                  <TextType variant={"h3"}>{elem.firstName} {elem.lastName}</TextType>
+                  <TextType variant={"bigP"}>{elem.firstName} {elem.lastName}</TextType>
                 </span>
               </span>
             ) as React.ReactNode
           }
           key={i}
-          className="mb-3"
+          className="mb-2"
         >
           <div className="p-4">
-            <TabView className={"mb-4"}>
+            <TabView>
               <TabPanel
                 header="О ребёнке"
                 leftIcon="pi pi-user mr-2"
-                className={"mr-4"}
+                headerClassName="mr-4"
               >
                 <PatientInfo 
                   firstName={elem.firstName}
@@ -58,16 +58,16 @@ const PatientsList = () => {
               <TabPanel
                 header="Расписание"
                 leftIcon="pi pi-calendar mr-2"
-                className={"mr-4"}
+                headerClassName="mr-4"
               >
                 <PatientSchedule individualSession={elem.individualSession} groupSessions={elem.groupSessions} patientId={elem.id}/>
               </TabPanel>
               <TabPanel
                 header="График"
                 leftIcon="pi pi-chart-bar mr-2"
-                className={"mr-4"}
+                headerClassName={"mr-4"}
               >
-                <PatientChart />
+                <PatientChart developmentResults={elem.developmentResults} />
               </TabPanel>
               <TabPanel header="Финансы" leftIcon="pi pi-dollar mr-2">
                 <PatientFinance payments={elem.payments} debts={elem.debts} patientId={elem.id}/>

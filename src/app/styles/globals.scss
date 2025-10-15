@@ -1,8 +1,6 @@
-@import "base";
-@import "colors";
-@import "mixins";
-@import "nullStyles";
-@import 'primereact/resources/primereact.css';
-@import 'primereact/resources/primereact.min.css';
-@import "primeflex/primeflex.css";
-@import 'primeicons/primeicons.css';
+@use "base" as *;
+@use "colors" as *;
+@use "mixins" as *;
+@use "nullStyles" as *;
+@use "primeflex/primeflex.scss";
+@import "primeicons/primeicons.css";

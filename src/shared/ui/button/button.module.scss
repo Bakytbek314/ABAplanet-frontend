@@ -1,4 +1,4 @@
-@import "@app/styles/mixins";
+@use "@app/styles/mixins" as *;
 
 .btn {
   border-radius: 20px;
