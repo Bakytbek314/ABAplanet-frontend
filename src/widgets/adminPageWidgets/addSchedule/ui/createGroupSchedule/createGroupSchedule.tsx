@@ -68,6 +68,7 @@ const CreateGroupSchedule = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     createGroup(createGroupFormData);
   };
   
